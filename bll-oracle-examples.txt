@@ -1,0 +1,243 @@
+CREATE TABLE PERSONS (
+ID number NOT NULL PRIMARY KEY ,
+Firstname varchar(55),
+Lastname varchar(55),
+age number
+);
+
+
+CREATE TABLE PERSONS (
+ID number NOT NULL ,
+Firstname varchar(55),
+Lastname varchar(55),
+age NUMBER,
+PRIMARY KEY (ID)
+);
+
+
+
+CREATE TABLE Orders (
+    OrderID     NUMBER       PRIMARY KEY,
+    OrderNumber NUMBER       NOT NULL,
+    PersonID    NUMBER,
+    CONSTRAINT fk_orders_persons FOREIGN KEY (PersonID) REFERENCES Persons(ID)
+);
+
+
+SELECT FIRSTNAME || ' ' || LASTNAME AS ADSOYAD FROM persons;
+
+SELECT * FROM PERSONS
+
+-- AD SOYAD I GETİRİN YAŞI 30 OLAN PERSONSIN 
+
+-- AD SOYAD I GETİRİN YAŞI 22 DEN KÜÇÜK OLAN PERSONSIN 
+
+
+-- AD SOYAD I GETİRİN YAŞI 27 OLMAYAN PERSONEL 
+
+-- AD SOYAD I GETİRİN YAŞI 18 DEN BÜYÜK 30 DEN KÜÇÜK OLAN PERSONEL 
+
+--C:\app\Lenovo\product\21c\homes\OraDB21Home1\network\admin
+
+SELECT FIRSTNAME || ' ' || LASTNAME  AS ADSOYAD , AGE  FROM persons WHERE AGE >=18 AND AGE <=30;
+
+SELECT FIRSTNAME || ' ' || LASTNAME  AS ADSOYAD , AGE  FROM persons WHERE AGE >=18 OR AGE <=40;
+
+--between
+
+SELECT FIRSTNAME || ' ' || LASTNAME  AS AD_SOYAD , AGE  FROM persons WHERE AGE  BETWEEN 22 AND 30;
+
+--between
+SELECT FIRSTNAME || ' ' || LASTNAME  AS AD_SOYAD , AGE  FROM persons WHERE AGE not BETWEEN 22 AND 30;
+
+
+
+--LIKE KEYWORD
+SELECT *FROM PERSONs
+
+SELECT *FROM PERSONs  WHERE FIRSTNAME LIKE '%İ'
+
+SELECT *FROM PERSONs  WHERE FIRSTNAME LIKE '%MEHMET%'
+
+---NULL
+SELECT * FROM PERSONS  WHERE FIRSTNAME IS  NULL
+
+
+--YAŞI 19 DAN BÜYÜK OLAN VE FİRSTNAME 'İ  A HARFİYLE BAŞLAYAN PERSONSLARI EKRANA YAZDRIN
+
+SELECT * FROM PERSONS WHERE AGE > 19 AND FIRSTNAME LIKE 'A%'
+
+
+--FONKSİYONLAR
+
+--TÜM HARFLERİ KÜÇÜK GETİRME LOWER FONNKSİYONU
+
+SELECT LOWER(firstname) from PERSONS p 
+
+SELECT LOWER(firstname),LOWER(lastname) from PERSONS p 
+
+SELECT CONCAT('firstnam','lastname') from PERSONS p 
+
+--karakter uzunluğu gösterme 
+SELECT length('OMEReee') FROM dual 
+
+--substring kelimeleri kesmek
+SELECT SUBSTR('Merhaba',3,3) FROM dual;
+
+--mod alma
+
+SELECT MOD(60,7) FROM dual
+
+
+SELECT MONTHS_BETWEEN('24-DEC-2019', '24-MAR-2018') FROM dual
+
+-- count fonksiyonu satır sayısı döner
+
+SELECT count(*) FROM PERSONS p 
+
+SELECT count(firstname) FROM PERSONS p 
+
+
+--MIN --MAX--SUM
+
+SELECT MIN(p.ID) FROM PERSONS p
+
+SELECT SUM(AGE) FROM PERSONS  
+--aritmetik ortalama
+
+SELECT AVG(age) FROM PERSONS p 
+
+--ORDER BY sıralama 
+
+SELECT * FROM persons ORDER BY FIRSTNAME ASC , age DESC
+
+
+--adı ALİ OLAN  personsları like keyworduyle bulup yaşlarını büyükten küçüğe sıralayın
+
+SELECT * FROM persons WHERE FIRSTNAME LIKE 'AL%' ORDER BY age DESC
+
+--Group By
+
+SELECT FIRSTNAME , Min(AGE)  FROM persons WHERE FIRSTNAME ='ALİ' GROUP BY FIRSTNAME
+
+--having 
+
+SELECT  MAX(age) FROM persons WHERE  FIRSTNAME ='OMER' GROUP BY FIRSTNAME HAVING COUNT(*) >=2
+
+SELECT age,count(*) FROM persons GROUP BY age HAVING COUNT(ID) >1
+
+
+--update
+
+SELECT *fROM  persons
+
+UPDATE persons 
+SET LASTNAME = 'KOÇ' ,FIRSTNAME ='ERSİN' 
+WHERE ID =5;
+
+
+---delete
+
+
+DELETE FROM PERSONS WHERE ID = 7
+
+
+DELETE FROM PERSONS WHERE FIRSTNAME = 'ERSİN'
+
+
+--nested query iç içie sorgular 
+SELECT *fROM  persons
+
+
+--yaşı musatfanın yaşından büyük olan tüm personellerin adı ve yaşı
+SELECT  firstname ,age fROM  persons WHERE age > (SELECT age FROM PERSONS  WHERE FIRSTNAME ='Mustafa');
+
+
+SELECT  firstname ,age fROM  persons WHERE age =(SELECT age FROM PERSONS WHERE  FIRSTNAME  = 'MEHMET')
+
+SELECT  firstname ,age fROM  persons WHERE age =(SELECT age FROM PERSONS WHERE  FIRSTNAME  = 'MEHMET') AND AGE < (SELECT age FROM PERSONS WHERE  LASTNAME   = 'FARUK');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UPDATE PErsons  SET Age =29 WHERE AGE =27
+
+---BETWEEN AND--NOT BETWEEN--IN()--LIKE--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
