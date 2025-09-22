@@ -1,0 +1,67 @@
+SELECT o.NAME AS OGRENCI_ADI, do.DERS_ID
+FROM OGRENCI o
+JOIN DERS_OGRENCI do ON o.ID = do.OGRENCI_ID;
+
+SELECT o.ID ,o.NAME  FROM ders d INNER JOIN OGRETMEN o ON d.OGRETMEN_ID = o.ID 
+
+SELECT * FROM DERS_OGRENCI do JOIN DERS d ON do.DERS_ID =d.ID WHERE d.ID =11
+
+
+SELECT * FROM ders
+
+SELECT *FROM OGRETMEN o 
+
+SELECT * FROM konu
+
+SELECT * FROM OGRENCI o 
+
+SELECT *FROM DERS_OGRENCI do 
+
+-- 11 İD Lİ Dersin Öğretmenin adı 
+
+SELECT d.ID ,ogretmen.NAME   FROM ders d JOIN OGRETMEN ogretmen ON  d.OGRETMEN_ID =ogretmen.ID  WHERE d.ID =11
+
+
+-- ders adı spring olan konuyu getir 
+
+--ders id ,ders öğretmen id ,konu adı getir konu adı Spring olana göre 
+
+SELECT ders.ID ,ders.OGRETMEN_ID ,konu.NAME  FROM DERS ders JOIN KONU konu ON ders.KONU_ID =konu.ID  WHERE konu.NAME ='Spring'; 
+
+--adı ibrahim olan öğrencinin ders kayıtlarını getirelim
+
+SELECT o.NAME ,do.DERS_ID  FROM OGRENCI o JOIN DERS_OGRENCI do ON o.ID =do.OGRENCI_ID WHERE o.NAME ='ibrahim'
+
+
+--öğrenci adı dersöğrenci noru getirin  notu >65 olanları
+SELECT * FROM OGRENCI o JOIN DERS_OGRENCI do ON o.ID =do.OGRENCI_ID 
+
+--gıcık olan öğretmenlerin verdiği dersler
+
+SELECT ders.ID ,ogretmen.NAME ,ogretmen.IS_GICIK  FROM ders ders JOIN OGRETMEN ogretmen ON ders.OGRETMEN_ID =ogretmen.ID WHERE ogretmen.IS_GICIK =1
+
+--devamsızlığı 20 den büyük öğrenciileri getirin-------öğrenci adı ve dersöğrenci devamsızlığı 
+
+--docker konulu derslerin idleri
+SELECT d.ID ,k.NAME  FROM ders d JOIN KONU k ON  d.KONU_ID =k.ID WHERE k.NAME LIKE '%Docker%'   ORDER BY d.ID asc
+
+
+--OGR_NUMBER = 345 olan öğrencinin dersleri o.gr_number,o.name.do.Ders_ID 
+
+select o.OGR_NUMBER ,o.NAME ,do.DERS_ID  FROM DERS_OGRENCI do JOIN OGRENCI o  ON do.OGRENCI_ID =o.ID  WHERE o.OGR_NUMBER =345
+
+
+SELECT * FROM OGRENCI o 
+--öğrenci year öğrenci name 
+
+SELECT * FROM ders_ogrenci do  JOIN OGRENCI og ON do.OGRENCI_ID=og.ID WHERE og.YEAR BETWEEN 1 AND 4; 
+
+SELECT *FROM ders
+
+SELECT *FROM DERS_OGRENCI do 
+
+--öğrencilerin adı ve d ders konusu
+SELECT o.NAME, k.NAME   FROM  OGRENCI o 
+JOIN DERS_OGRENCI do     ON o.ID =do.OGRENCI_ID 
+JOIN Ders d              ON do.DERS_ID =d.ID 
+JOIN konu k              ON d.KONU_ID =k.ID WHERE do.DEVAMSIZLIK >10
